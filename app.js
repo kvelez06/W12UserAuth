@@ -13,10 +13,14 @@ function login() {
             document.getElementById("login-status").innerHTML = "LOGIN SUCCESS";
             let tokenObject = JSON.parse(this.responseText);
             console.log(tokenObject);
+            Cookies.set("getCookie", tokenObject.token);
+            window.open("page2.html", "_self");
         } else if(this.readyState != 4) {
             document.getElementById("login-status").innerHTML = "LOADING";
+            console.log(tokenObject);
         } else {
             document.getElementById("login-status").innerHTML = "LOGIN ERROR";
+            console.log(tokenObject);
         }
     };
     ajax.open("POST", "https://reques.in/api/login", true);
